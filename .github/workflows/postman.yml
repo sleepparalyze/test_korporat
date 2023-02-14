@@ -1,4 +1,4 @@
-name: Automated API tests using Postman CLI
+name: QA_Test_API_Disciple
 
 on: push
 
