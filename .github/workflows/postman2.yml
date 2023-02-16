@@ -15,5 +15,5 @@ jobs:
         run: mkdir -p TestResults
       - name: Run API tests
         run: |
-          newman run test.json -e test_envi --reporters cli,htmlextra --reporter-htmlextra-export TestResults/HtmlReport.html
+          newman run test.json --reporters cli,htmlextra --reporter-htmlextra-export TestResults/HtmlReport.html
       
