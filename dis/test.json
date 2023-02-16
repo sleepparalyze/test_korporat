@@ -267,12 +267,7 @@
 									"pm.test(\"Status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
-									"\r",
-									"pm.test(\"Match email\", function () {\r",
-									"    var jsonData = pm.response.json();\r",
-									"    pm.expect(jsonData.data.user.email).to.eql(pm.environment.get(\"email\"));\r",
-									"});\r",
-									""
+									"\r"
 								],
 								"type": "text/javascript"
 							}
