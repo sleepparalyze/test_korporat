@@ -20,3 +20,8 @@ jobs:
       - name: Run API tests
         run: |
           newman run dis/test.json -e dis/test_envi.json -r htmlextra
+      - name : upload report
+        uses : action/testing@v3
+        with:
+          name : report
+          path  : TestResults
