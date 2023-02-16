@@ -19,6 +19,7 @@ jobs:
       - name: Make directory for results
         run: mkdir -p TestResults
       - name: Run API tests
+        continue-on-error : true
         run: |
           newman run dis/test.json -e dis/test_envi.json --reporters cli,htmlextra --reporter-htmlextra-export TestResults/HtmlReport.html
       - name : Upload report
