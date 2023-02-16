@@ -21,7 +21,7 @@ jobs:
         run: |
           newman run dis/test.json -e dis/test_envi.json -r htmlextra
       - name : upload report
-        uses : action/upload-artifact@v3
+        uses : actions/upload-artifact@v3
         with:
           name : report
           path  : TestResults
