@@ -7,6 +7,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: Install Node
+        uses: actions/setup-node@v3.6.0
+        with: 
+          node-version: '16.x'
       - name : Install Newman
         run: |
               npm install -g newman
@@ -15,5 +19,5 @@ jobs:
         run: mkdir -p TestResults
       - name: Run API tests
         run: |
-          newman run .github/workflows/test.json --reporters cli,htmlextra --reporter-htmlextra-export TestResults/HtmlReport.html
+          newman run test.json -e test_envi.json --reporters cli,htmlextra --reporter-htmlextra-export TestResults/HtmlReport.html
       
