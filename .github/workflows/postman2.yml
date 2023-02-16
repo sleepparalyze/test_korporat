@@ -17,12 +17,12 @@ jobs:
               npm install -g newman-reporter-slackreporter
               npm install -g newman-reporter-htmlextra
       - name: Make directory for results
-        run: mkdir TestResults
+        run: mkdir -p TestResults
       - name: Run API tests
         run: |
           newman run dis/test.json -e dis/test_envi.json --reporters cli,htmlextra --reporter-htmlextra-export TestResults/HtmlReport.html
-      - name : upload report
-        uses : actions/upload-artifact@v3
+      - name : Upload report
+        uses : actions/upload-artifact@v3.1.2
         with:
           name : report
           path : TestResults
