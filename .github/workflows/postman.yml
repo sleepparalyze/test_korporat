@@ -20,6 +20,6 @@ jobs:
         run: postman login --with-api-key ${{ secrets.POSTMAN_API_KEY }}
       - name: Run API tests
         run: |
-          postman collection run "19512317-dbf47aad-f882-454c-871b-8bac87e669fa" -e "19512317-7d1f79f1-faf1-4399-af4a-6e2e625969e2" htmlextra --reporter-htmlextra-export TestResults/HtmlReport.html
+          postman collection run "19512317-dbf47aad-f882-454c-871b-8bac87e669fa" -e "19512317-7d1f79f1-faf1-4399-af4a-6e2e625969e2" --reporters cli,htmlextra --reporter-htmlextra-export TestResults/HtmlReport.html
       - name: Logout
         run: postman logout ${{ secrets.POSTMAN_API_KEY }}
