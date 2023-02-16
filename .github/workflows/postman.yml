@@ -1,6 +1,8 @@
 name: QA_Test_API_Disciple
 
-on: push
+on: 
+  workflow_dispatch:
+  push:
 
 jobs:
   automated-api-tests:
