@@ -1,0 +1,19 @@
+name: QA_Test_API_Disciple
+
+on: push
+
+jobs:
+  automated-api-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name : Install Newman
+        run: |
+              npm install -g newman
+              npm install -g newman-reporter-htmlextra
+      - name: Make directory for results
+        run: mkdir -p TestResults
+      - name: Run API tests
+        run: |
+          newman collection run "19512317-dbf47aad-f882-454c-871b-8bac87e669fa" -e "19512317-7d1f79f1-faf1-4399-af4a-6e2e625969e2" --reporters cli,htmlextra --reporter-htmlextra-export TestResults/HtmlReport.html
+      
