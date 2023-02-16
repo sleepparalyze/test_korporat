@@ -15,5 +15,5 @@ jobs:
         run: mkdir -p TestResults
       - name: Run API tests
         run: |
-          newman run /.github/workflows/test.json --reporters cli,htmlextra --reporter-htmlextra-export TestResults/HtmlReport.html
+          newman run .github/workflows/test.json --reporters cli,htmlextra --reporter-htmlextra-export TestResults/HtmlReport.html
       
