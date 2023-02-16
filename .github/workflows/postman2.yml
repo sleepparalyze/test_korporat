@@ -15,5 +15,5 @@ jobs:
         run: mkdir -p TestResults
       - name: Run API tests
         run: |
-          newman collection run "19512317-dbf47aad-f882-454c-871b-8bac87e669fa" -e "19512317-7d1f79f1-faf1-4399-af4a-6e2e625969e2" --reporters cli,htmlextra --reporter-htmlextra-export TestResults/HtmlReport.html
+          newman run test.json -e test_envi.json --reporters cli,htmlextra --reporter-htmlextra-export TestResults/HtmlReport.html
       
