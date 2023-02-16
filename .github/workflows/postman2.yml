@@ -1,6 +1,6 @@
 name: QA_Test_API_Disciple v2
 
-on: push
+on: workflow_dispatch
 
 jobs:
   automated-api-tests:
@@ -14,6 +14,7 @@ jobs:
       - name : Install Newman
         run: |
               npm install -g newman
+              npm install -g newman-reporter-slackreporter
               npm install -g newman-reporter-htmlextra
       - name: Make directory for results
         run: mkdir -p TestResults
