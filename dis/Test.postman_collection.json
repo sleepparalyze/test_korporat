@@ -1,0 +1,735 @@
+{
+	"info": {
+		"_postman_id": "17973ff1-9d00-453e-aad8-72a026a47acd",
+		"name": "Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19512317"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login - Not registered",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Email is not yet registered. Register your account now?\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"x{{email}}\",\r\n    \"password\": \"{{password}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrlApp}}/api/user/auth/login",
+							"host": [
+								"{{baseUrlApp}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"auth",
+								"login"
+							]
+						},
+						"description": "*   Changes:\n    *   add \"subscriptions\" (package/study that user bought on)\n    *   add \"groups\" (group that user registered on)\n    *   add user id"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"zakunin1140+02@gmail.com\",\r\n    \"password\": \"87654321\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrlApp}}/api/user/auth/login",
+									"host": [
+										"{{baseUrlApp}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "606"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"25e-DqPX/xBRbZn3RwG0JoYe6SI4k+U\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Jul 2022 08:27:01 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 100,\n    \"message\": \"OK\",\n    \"data\": {\n        \"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Inpha3VuaW4xMTQwKzAyQGdtYWlsLmNvbSIsInN1YiI6MTM4LCJyb2xlIjoiIiwiaWF0IjoxNjU2NjY0MDIwfQ.UnC_6lEnKn-mIKjrlwgWV36YUCZCUPbieDLnlsjOSoE\",\n        \"user\": {\n            \"id\": 138,\n            \"firstname\": \"Its Me\",\n            \"lastname\": \"Aether\",\n            \"email\": \"zakunin1140+02@gmail.com\",\n            \"role\": \"participant\",\n            \"age_range\": \"25-34\",\n            \"country\": \"Indonesia\",\n            \"affiliation\": \"Church Santa Maria\",\n            \"activated\": false,\n            \"newsletter\": true,\n            \"shared_email\": false,\n            \"shared_phone\": false,\n            \"have_group_code\": true,\n            \"study_registration\": {\n                \"mode\": \"selected\",\n                \"id\": 39\n            },\n            \"subscriptions\": [],\n            \"groups\": []\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Login - Wrong password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Email and/or password do not match. Please try again\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"{{email}}\",\r\n    \"password\": \"xxx\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrlApp}}/api/user/auth/login",
+							"host": [
+								"{{baseUrlApp}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"auth",
+								"login"
+							]
+						},
+						"description": "*   Changes:\n    *   add \"subscriptions\" (package/study that user bought on)\n    *   add \"groups\" (group that user registered on)\n    *   add user id"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"zakunin1140+02@gmail.com\",\r\n    \"password\": \"87654321\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrlApp}}/api/user/auth/login",
+									"host": [
+										"{{baseUrlApp}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "606"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"25e-DqPX/xBRbZn3RwG0JoYe6SI4k+U\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Jul 2022 08:27:01 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 100,\n    \"message\": \"OK\",\n    \"data\": {\n        \"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Inpha3VuaW4xMTQwKzAyQGdtYWlsLmNvbSIsInN1YiI6MTM4LCJyb2xlIjoiIiwiaWF0IjoxNjU2NjY0MDIwfQ.UnC_6lEnKn-mIKjrlwgWV36YUCZCUPbieDLnlsjOSoE\",\n        \"user\": {\n            \"id\": 138,\n            \"firstname\": \"Its Me\",\n            \"lastname\": \"Aether\",\n            \"email\": \"zakunin1140+02@gmail.com\",\n            \"role\": \"participant\",\n            \"age_range\": \"25-34\",\n            \"country\": \"Indonesia\",\n            \"affiliation\": \"Church Santa Maria\",\n            \"activated\": false,\n            \"newsletter\": true,\n            \"shared_email\": false,\n            \"shared_phone\": false,\n            \"have_group_code\": true,\n            \"study_registration\": {\n                \"mode\": \"selected\",\n                \"id\": 39\n            },\n            \"subscriptions\": [],\n            \"groups\": []\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"access_token\", jsonData.data.access_token);\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    try{pm.response.to.have.status(201);}catch(e){pm.test(\"error\",()=>{throw new Error(e.message)})}\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Match email\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.data.user.email).to.eql(pm.environment.get(\"email\"));\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"{{email}}\",\r\n    \"password\": \"{{password}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrlApp}}/api/user/auth/login",
+							"host": [
+								"{{baseUrlApp}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"auth",
+								"login"
+							]
+						},
+						"description": "*   Changes:\n    *   add \"subscriptions\" (package/study that user bought on)\n    *   add \"groups\" (group that user registered on)\n    *   add user id"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"zakunin1140+02@gmail.com\",\r\n    \"password\": \"87654321\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrlApp}}/api/user/auth/login",
+									"host": [
+										"{{baseUrlApp}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "606"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"25e-DqPX/xBRbZn3RwG0JoYe6SI4k+U\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 01 Jul 2022 08:27:01 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 100,\n    \"message\": \"OK\",\n    \"data\": {\n        \"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Inpha3VuaW4xMTQwKzAyQGdtYWlsLmNvbSIsInN1YiI6MTM4LCJyb2xlIjoiIiwiaWF0IjoxNjU2NjY0MDIwfQ.UnC_6lEnKn-mIKjrlwgWV36YUCZCUPbieDLnlsjOSoE\",\n        \"user\": {\n            \"id\": 138,\n            \"firstname\": \"Its Me\",\n            \"lastname\": \"Aether\",\n            \"email\": \"zakunin1140+02@gmail.com\",\n            \"role\": \"participant\",\n            \"age_range\": \"25-34\",\n            \"country\": \"Indonesia\",\n            \"affiliation\": \"Church Santa Maria\",\n            \"activated\": false,\n            \"newsletter\": true,\n            \"shared_email\": false,\n            \"shared_phone\": false,\n            \"have_group_code\": true,\n            \"study_registration\": {\n                \"mode\": \"selected\",\n                \"id\": 39\n            },\n            \"subscriptions\": [],\n            \"groups\": []\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Forgot Password - Not Registered",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Email is not registered\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"x{{email}}\" \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrlApp}}/api/user/auth/forgot-password",
+							"host": [
+								"{{baseUrlApp}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"auth",
+								"forgot-password"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"zakunin1140@gmail.com\" \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrlApp}}/api/user/auth/forgot-password",
+									"host": [
+										"{{baseUrlApp}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"auth",
+										"forgot-password"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "27"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1b-7N6NJP2kJ9RXQ20vJpO4sB82+AA\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 15 Dec 2021 07:57:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 100,\n    \"message\": \"OK\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Forgot Password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"OK\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"{{email}}\" \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrlApp}}/api/user/auth/forgot-password",
+							"host": [
+								"{{baseUrlApp}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"auth",
+								"forgot-password"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"zakunin1140@gmail.com\" \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrlApp}}/api/user/auth/forgot-password",
+									"host": [
+										"{{baseUrlApp}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"auth",
+										"forgot-password"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "27"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1b-7N6NJP2kJ9RXQ20vJpO4sB82+AA\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 15 Dec 2021 07:57:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 100,\n    \"message\": \"OK\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Resend confirmation link",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"OK\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\": \"register\",\r\n    \"email\": \"{{email}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrlApp}}/api/user/auth/resend-confirmation",
+							"host": [
+								"{{baseUrlApp}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"auth",
+								"resend-confirmation"
+							]
+						},
+						"description": "Notes:\n\n*   Type: register | forgot-password"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"type\": \"register\",\r\n    \"email\": \"zakunin1140@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrlApp}}/api/user/auth/resend-confirmation",
+									"host": [
+										"{{baseUrlApp}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"auth",
+										"resend-confirmation"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "27"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1b-7N6NJP2kJ9RXQ20vJpO4sB82+AA\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 05 Jan 2022 03:49:22 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 100,\n    \"message\": \"OK\"\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}
